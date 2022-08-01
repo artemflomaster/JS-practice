@@ -173,28 +173,55 @@
 // root.render(page);
 
 
-function ListOfEximents() {
+// function ListOfEximents() {
+//     return (
+//         <div>
+//             <Header />
+//             <ul>
+//                 <li>It is new for me</li>
+//                 <li>It is modern technology</li>
+//                 <li>It is will increase my salary</li>
+//                 <li>it is nice to make something work</li>
+//             </ul>
+//             <footer>
+//                 <small>© 2022 Boobka development. All rights reserved.</small>
+//             </footer>
+
+//         </div>
+
+//     )
+// }
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<ListOfEximents />);
+
+// function Header() {
+//     return (
+//         <header className="header">
+//             <nav className="nav">
+//                 <img src="./react-logo.svg" className="logo-img" />
+//                 <ul className="nav-items">
+//                     <li>Pricing</li>
+//                     <li>About</li>
+//                     <li>Contact</li>
+//                 </ul>
+//             </nav>
+//         </header>
+//     )
+// }
+// import Header from "./Header.js";
+
+
+function Page() {
     return (
-        <div>
-            <header>
-                <nav>
-                    <img src="./react-logo.svg" width="100" />
-                </nav>
-            </header>
-        <ul>
-            <li>It is new for me</li>
-            <li>It is modern technology</li>
-            <li>It is will increase my salary</li>
-            <li>it is nice to make something work</li>
-        </ul>
-<footer>
-<small>© 2022 Boobka development. All rights reserved.</small>
-</footer>
-
+        <div className="page-wrapper">
+            <Header />
+            <MainContent />
+            <Footer />
         </div>
-
     )
-}
+} 
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<ListOfEximents />);
+root.render(<Page />);
