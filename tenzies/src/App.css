@@ -1,0 +1,91 @@
+html,
+body {
+  margin: 0px;
+  background-color: #0B2434;
+  font-family: 'Inter', 'Karla', sans-serif;
+
+}
+
+
+
+.App {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  width: 320px;
+  height: 320px;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+
+.App h1 {
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  margin: 30px 0 0 0;
+
+}
+
+.App span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  width: 233px;
+  text-align: center;
+}
+
+.App button {
+  margin-bottom: 30px;
+  width: 92px;
+  height: 36px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: #5035FF;
+  border-radius: 4px;
+  border: 0px;
+  color: white;
+  cursor: pointer;
+
+}
+.App button:active {
+  background-color: #402cc3;
+}
+
+.buttons-wrapper {
+
+  display: grid;
+  grid-template-columns: 35px 35px 35px 35px 35px;
+  grid-gap: 17px;
+}
+
+.square {
+  background-color:white;
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2B283A;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.isHeld{
+  background-color: #59E391;
+
+}
+.square:active{
+  background-color: #dcdcdc;
+
+}
