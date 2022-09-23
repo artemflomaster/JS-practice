@@ -104,7 +104,11 @@ export default function MainPage() {
     return (
         <div className='main-page-wrapper'>
             {content}
+<div className="control-footer">
+<div className="message"><h1>Correct answers 3/5</h1></div>
+<button>Check results</button>
 
+</div>
         </div>
     )
 }
