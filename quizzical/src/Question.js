@@ -1,14 +1,24 @@
 import React from "react";
-import Answer from "./Answer";
-import {he} from 'he'
+
 
 export default function Question(props) {
-let answersToShow = '';
-    if (props){
-        console.log('props are pushed')
+    let answersToShow = [];
+    if (props) {
         answersToShow = props.answers.map(item => {
+            // const theClass = item.isChosen ? ' chosen' : '';
+           let theClass = ''
+            switch (item.isChosen) {
+                case true: { theClass = ' chosen';
+            break }
+                case 'correct': { theClass = ' correct';
+            break }
+                case 'incorrect': { theClass = ' incorrect';
+            break }
+            default: {theClass = ''}
+            }
+
             return (
-                <Answer value={item.value} key={item.key} isCorrect={item.isCorrect}/>
+                <div className={'answer-button' + theClass} id={item.id} key={item.id} onClick={() => props.chooseHandler(item.id, props.id)}>{item.value}</div>
             )
         })
     }

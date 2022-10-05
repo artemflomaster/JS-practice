@@ -105,7 +105,25 @@ button:hover {
   font-size: 11px;
   line-height: 20px;
   margin-right: 15px;
+  white-space: nowrap;
+  overflow: hidden;
 
+}
+
+.chosen{
+  background-color: #D6DBF5;
+  border-color: #D6DBF5;
+}
+
+.correct {
+  background-color: #94D7A2;
+  color: #293264;
+  border-color:#94D7A2;
+}
+
+.incorrect {
+  background-color: #F8BCBC;
+  border-color:#F8BCBC;
 }
 
 hr {
@@ -124,5 +142,7 @@ hr {
 
 .message h1 {
   font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
 
 }

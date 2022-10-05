@@ -14,9 +14,8 @@ export default function MainPage() {
         data: null
     });
     //state of the content
-    const [content, setContent] = React.useState(
-        'Data is loading'
-    )
+    const [contentArray, setContent] = React.useState([])
+
 
     //fetching the Data and updating the Data state
     React.useEffect(() => {
@@ -60,12 +59,13 @@ export default function MainPage() {
 
     }, [])
 
-    //generating the content Array
-    function updateContent() {
+    //generating the initial content Array
+
+    function initialContent() {
 
         if (data.isLoaded) {
-            const contentToSet = data.data.map(item => {
-                //making answers object to push as prop
+            const initialArray = data.data.map(item => {
+                //making answers object 
                 const numberOfAnswers = item.incorrect_answers.length + 1;
                 const randomVal = Math.floor(Math.random() * numberOfAnswers);
                 const answersArray = item.incorrect_answers;
@@ -75,20 +75,28 @@ export default function MainPage() {
                     answersObject.push(
                         {
                             key: i,
-                            value: answersArray[i],
-                            isCorrect: i === randomVal ? true : false
+                            value: decode(answersArray[i]),
+                            isCorrect: i === randomVal ? true : false,
+                            isChosen: false,
+                            id: nanoid()
                         })
                 }
-                
-                return (
-                    <Question key={nanoid()} question={decode(item.question)} answers={answersObject} />
+
+                return ({
+                    question: decode(item.question),
+                    id: nanoid(),
+                    answers: answersObject
+                }
+
 
 
                 )
             })
 
-            setContent(contentToSet)
+            setContent(initialArray)
             console.log('content was set')
+
+            // clearing the data state to prevent updating the initial content state
             setData({
                 isLoaded: false,
                 errorMessage: 'loading',
@@ -98,17 +106,83 @@ export default function MainPage() {
 
         }
     }
-    updateContent();
+    initialContent();
 
+
+    let contentToShow = 'Data is loading'
+    if (contentArray.length > 0) {
+        contentToShow = contentArray.map(item => {
+            return (
+                < Question key={nanoid()} id={item.id} question={item.question} answers={item.answers} chooseHandler={chooseAnswer} />
+            )
+        }
+        )
+    }
+    //mark chosen answer
+    function chooseAnswer(id, questionID) {
+        console.log(questionID);
+        setContent(oldContent => oldContent.map(item => {
+
+
+            //if choose another answer it automatically deselect another one
+            const objectToReturn = item.id === questionID ? {
+                ...item,
+                answers: item.answers.map(answer => {
+                    return (answer.id === id ? { ...answer, isChosen: !answer.isChosen } : { ...answer, isChosen: false })
+                }
+                )
+            } : item
+
+
+            return (objectToReturn)
+        })
+        )
+    }
+    //state of results
+    const [answerCheackingText, setAnswersText] = React.useState('');
+    function checkResults() {
+
+        //calculating correct answers
+        let checkingInt = 0;
+        contentArray.forEach(element => {
+            element.answers.forEach(answer => {
+                if (answer.isChosen && answer.isCorrect) { checkingInt++ }
+            })
+        });
+        //resetting the content with different colors of answers
+        setContent(prev => prev.map(item => {
+
+            return ({
+                ...item,
+                answers: item.answers.map(answer => {
+                    if (answer.isChosen && answer.isCorrect) {
+                        return ({
+                            ...answer,
+                            isChosen: 'correct'
+                        })
+                    } else if (answer.isChosen) {
+                        return ({
+                            ...answer,
+                            isChosen: 'incorrect'
+                        })
+                    } else {
+                        return answer;
+                    }
+
+                })
+            })
+        }));
+        setAnswersText('You scored ' + checkingInt + '/5 correct answers');
+    }
 
     return (
         <div className='main-page-wrapper'>
-            {content}
-<div className="control-footer">
-<div className="message"><h1>Correct answers 3/5</h1></div>
-<button>Check results</button>
+            {contentToShow}
+            <div className="control-footer">
+                <div className="message"><h1>{answerCheackingText}</h1></div>
+                <button onClick={checkResults}>Check results</button>
 
-</div>
+            </div>
         </div>
     )
 }
