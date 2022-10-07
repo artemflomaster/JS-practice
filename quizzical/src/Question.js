@@ -5,7 +5,7 @@ export default function Question(props) {
     let answersToShow = [];
     if (props) {
         answersToShow = props.answers.map(item => {
-            // const theClass = item.isChosen ? ' chosen' : '';
+           //adding css if needed
            let theClass = ''
             switch (item.isChosen) {
                 case true: { theClass = ' chosen';
