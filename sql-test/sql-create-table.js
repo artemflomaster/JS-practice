@@ -9,12 +9,13 @@ const con = mysql.createConnection({
 con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    const sql = "CREATE DATABASE aadb";
+    const sql = "CREATE TABLE posts (id INT AUTO_INCREMENT PRIMARY KEY, section VARCHAR(50), title VARCHAR(255), innertext VARCHAR(1500), tags JSON)";
 
 
     con.query(sql, function (err, result, fields) {
         if (err) throw err;
-        console.log( fields);
+        // console.log( fields);
+        console.log("Table created");
 
     });
 });

@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+
 const con = mysql.createConnection({
     host: "localhost",
     user: "tester",
@@ -6,16 +7,19 @@ const con = mysql.createConnection({
     database: "aadb"
 })
 
+let data;
+
 con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    const sql = "CREATE DATABASE aadb";
 
+    const sql = "SELECT * FROM posts";
 
     con.query(sql, function (err, result, fields) {
         if (err) throw err;
-        console.log( fields);
-
+        data = result;
+        console.log(data);
+        console.log(data[0].id)
     });
 });
 
