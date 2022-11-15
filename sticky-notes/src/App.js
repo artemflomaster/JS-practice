@@ -5,6 +5,8 @@ import { nanoid } from 'nanoid';
 
 
 export default function App() {
+  const [isLoaded, setLoading] = React.useState(false);
+
   const [notes, setNotes] = React.useState([
     {
       id: '123',
@@ -13,6 +15,18 @@ export default function App() {
     }
   ])
 
+  React.useEffect(() => {
+    setNotes(JSON.parse(localStorage.getItem('stickynotes')));
+    setLoading(true);
+    console.log('loaded from local storage')
+  }, [])
+
+
+  //save notes to local storage on every state update
+  if (isLoaded){
+  localStorage.setItem('stickynotes', JSON.stringify(notes));
+  // console.log(localStorage.getItem('stickynotes'))
+  }
 
   function createNote() {
     setNotes(prev => {
@@ -29,11 +43,11 @@ export default function App() {
     )
   }
 
-  function removeNote(id){
-setNotes(prev =>{
-  const filtered = prev.filter(note => note.id!==id);
-return filtered;
-})
+  function removeNote(id) {
+    setNotes(prev => {
+      const filtered = prev.filter(note => note.id !== id);
+      return filtered;
+    })
   }
 
   const content = notes.map(note => {

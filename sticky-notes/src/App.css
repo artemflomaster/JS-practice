@@ -6,4 +6,33 @@ body {
 
 .App {
   text-align: center;
+
+}
+
+
+.notes-wrapper {
+  background-color: #eee;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: row;
+  align-content: flex-start;
+}
+
+.note {
+  margin: 5px;
+  width: 150px;
+  min-height: 150px;
+  background-color: rgb(209, 203, 120);
+  border: solid 1px;
+}
+
+.note-header {
+  padding: 5px;
+  background-color: rgb(187, 182, 103);
+}
+
+.note-content {
+  padding: 5px;
 }
