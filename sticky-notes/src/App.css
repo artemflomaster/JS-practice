@@ -3,6 +3,7 @@ body {
   margin: 0px;
   color: #333;
   font-family: 'Open Sans', sans-serif;
+  background-color: #eee;
 }
 
 
@@ -13,7 +14,7 @@ body {
 
 
 .notes-wrapper {
-  background-color: #eee;
+  
   height: 90vh;
   width: 100%;
   display: flex;
@@ -35,6 +36,10 @@ body {
   padding: 5px;
   background-color: #00000010;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+
 
 }
 
@@ -47,17 +52,21 @@ body {
   font-size: 14px;
 }
 
-.input-header[type=text]:focus {
+.input-header[type=text]:focus-visible {
   /* background-color: rgb(187, 182, 103); */
-  border: 0px solid rgb(236, 12, 12);
+  outline: none;
 }
 
 .button-header {
-  width: 20px;
-  height: 20px;
-  padding: 0px
-}
 
+  fill: #00000037;
+  margin: 0 4px 0 10px;
+}
+.button-header:hover {
+
+  fill: #00000069;
+ 
+}
 
 .note-content {
   padding: 2px;
@@ -76,9 +85,10 @@ body {
   padding: 3px;
   border: 0px;
   display: block;
-  /* word-wrap: break-word; */
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  color: #333;
+  outline: none;
 
 }
 
@@ -100,4 +110,12 @@ body {
 
 .color5 {
   background-color: #CED3DA;
+}
+
+.footer button {
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.08), 0px 3px 5px rgba(0, 0, 0, 0.04), 0px 2.5px 2px rgba(0, 0, 0, 0.02);
+  font-family: 'Open Sans', sans-serif;
+
+
+
 }
