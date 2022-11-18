@@ -7,22 +7,35 @@ import { nanoid } from 'nanoid';
 export default function App() {
   const [isLoaded, setLoading] = React.useState(false);
 
+  //initial note. Using at first start and for a new one
+  const initialNote = {
+    id: nanoid(),
+    header: '',
+    content: '',
+    color: getColor()
+  }
+
   const [notes, setNotes] = React.useState([
     {
-      id: '123',
-      header: 'New header',
-      content: 'write something',
-      color: 'color1'
+      initialNote
     }
   ])
 
   React.useEffect(() => {
-    setNotes(JSON.parse(localStorage.getItem('stickynotes')));
+    if (localStorage.getItem('stickynotes') !== null) {
+      setNotes(JSON.parse(localStorage.getItem('stickynotes')));
+      console.log('loaded from local storage')
+    } else {
+      setNotes([{
+        id: nanoid(),
+        header: '',
+        content: '',
+        color: getColor()
+      }]);
+      console.log('local saves not found. initial note loaded')
+    }
+
     setLoading(true);
-    console.log('loaded from local storage')
-
-
-
 
   }, [])
 
@@ -31,15 +44,6 @@ export default function App() {
   //save notes to local storage on every state update
   if (isLoaded) {
     localStorage.setItem('stickynotes', JSON.stringify(notes));
-    // console.log(localStorage.getItem('stickynotes'))
-    //
-    //   const textArea = document.getElementsByName('content');
-    //   console.log(textArea.length);
-
-    //   for (let i = 0; i < textArea.length; i++) {
-    //     console.log(textArea[i])
-    //     textArea[i].style.height = textArea[i].scrollHeight+100 + 'px;';
-    //   }
 
   }
 
@@ -50,14 +54,8 @@ export default function App() {
   //creates new note
   function createNote() {
     setNotes(prev => {
-      console.log('add')
       return ([...prev,
-      {
-        id: nanoid(),
-        header: 'New header',
-        content: 'write something',
-        color: getColor()
-      }
+        initialNote
       ]
       )
     }

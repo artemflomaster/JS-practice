@@ -9,12 +9,11 @@ body {
 
 .App {
   text-align: center;
-
+  margin: 10px;
 }
 
 
 .notes-wrapper {
-  
   height: 90vh;
   width: 100%;
   display: flex;
@@ -38,8 +37,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
-
 
 }
 
@@ -53,19 +50,16 @@ body {
 }
 
 .input-header[type=text]:focus-visible {
-  /* background-color: rgb(187, 182, 103); */
   outline: none;
 }
 
 .button-header {
-
   fill: #00000037;
   margin: 0 4px 0 10px;
 }
-.button-header:hover {
 
+.button-header:hover {
   fill: #00000069;
- 
 }
 
 .note-content {
@@ -75,9 +69,6 @@ body {
 
 .text-content {
   width: 95%;
-  /* height: fit-content;
-  overflow: auto; */
-  /* height: auto; */
   min-width: 200px;
   min-height: 200px;
   background-color: transparent;
@@ -89,9 +80,40 @@ body {
   font-size: 14px;
   color: #333;
   outline: none;
-
 }
 
+/* scrollbar styling */
+.text-content::-webkit-scrollbar {
+  width: 1em;
+  outline: none;
+  border: 0px;
+} 
+
+
+.text-content::-webkit-scrollbar-track {
+  background-color: none;
+  cursor: pointer;
+  
+ } 
+.text-content::-webkit-scrollbar-thumb {
+    background-color: #0000001a; 
+    border-radius: 7px;
+    border: 0px;
+
+  }
+
+.text-content::-webkit-scrollbar-corner{
+    /* background-color: none; 
+    background: none; */
+    background: transparent;
+}
+
+.text-content::-webkit-scrollbar-track-piece{
+  border: 0px;
+}
+
+
+/* colors pack */
 .color1 {
   background-color: #FFEA79;
 }
@@ -112,10 +134,9 @@ body {
   background-color: #CED3DA;
 }
 
+
 .footer button {
   box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.08), 0px 3px 5px rgba(0, 0, 0, 0.04), 0px 2.5px 2px rgba(0, 0, 0, 0.02);
   font-family: 'Open Sans', sans-serif;
-
-
 
 }
